@@ -1,0 +1,111 @@
+﻿@page "/playlists"
+
+<div>
+    <span @onclick="NavigateHome" class="oi oi-arrow-left"
+          style="zoom:2;" aria-hidden="true"></span>
+</div>
+
+<h3>Manage Playlists</h3>
+
+@if (AppState.SelectedPlayList != null)
+{
+    <h4>
+        Current PlayList:
+        @AppState.SelectedPlayList.Name
+        (@AppState.SelectedPlayList.Shows.Count)
+    </h4>
+}
+<br />
+
+@if (AppState.PlayLists.Count > 0)
+{
+    <h4>Playlists:</h4>
+    <select class="form-control" @onchange="PlayListSelected"
+        @onclick="PlayListsClicked" style="width:100%;">
+        @foreach (var playList in AppState.PlayLists)
+        {
+            if (AppState.SelectedPlayList != null
+            && @playList == AppState.SelectedPlayList)
+            {
+                <option selected value="@playList.Id">
+                    @playList.Name (@playList.Shows.Count)
+                </option>
+            }
+            else
+            {
+                <option value="@playList.Id">
+                    @playList.Name (@playList.Shows.Count)
+                </option>
+            }
+        }
+    </select>
+    <br />
+    <br />
+}
+<div>
+    <button disabled="@CommandButtonsDisabled" class="btn btn-primary"
+            @onclick="AddButtonClicked">
+        Add
+    </button>
+    @if (AppState.SelectedPlayList != null)
+    {
+        <span>&nbsp;</span>
+        <button disabled="@CommandButtonsDisabled" class="btn btn-primary"
+            @onclick="EditButtonClicked">
+            Edit
+        </button>
+        <span>&nbsp;</span>
+        <button disabled="@CommandButtonsDisabled" class="btn btn-danger"
+            @onclick="DeleteButtonClicked">
+            Delete
+        </button>
+    }
+</div>
+<br />
+
+@if (PlaylistEditAction != PlaylistEditAction.None)
+{
+    <EditForm Model="PlayListToAddOrEdit" 
+        OnValidSubmit="SubmitPlayListClicked">
+        <DataAnnotationsValidator />
+
+        Name:
+        <br />
+        <InputText id="InputName" 
+            @bind-Value="@PlayListToAddOrEdit.Name" />
+        <br />
+        <br />
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <span>&nbsp;</span>
+        <button @onclick="CancelButtonPressed" class="btn btn-secondary"
+            type="button">
+            Cancel
+        </button>
+
+        <ValidationSummary />
+    </EditForm>
+
+    @if (PlayListToAddOrEdit.Shows.Count > 0)
+    {
+        <br />
+        <br />
+        @foreach (var show in PlayListToAddOrEdit.Shows)
+        {
+            <div style="padding:4px;">
+                @if (@show != @PlayListToAddOrEdit.Shows.First())
+                {
+                    <span @onclick="() => MoveUp(show)" class="oi oi-arrow-top"
+          style="padding-right:4px;" aria-hidden="true"></span>
+                }
+                @if (@show != @PlayListToAddOrEdit.Shows.Last())
+                {
+                    <span @onclick="() => MoveDown(show)" class="oi oi-arrow-bottom"
+          style="padding-right:4px;" aria-hidden="true"></span>
+                }
+                @show.ShowTitle
+            </div>
+        }
+    }
+    <br />
+    <br />
+}
