@@ -32,16 +32,15 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-	  <CodesignKey>Apple Development: Created via API (9RA4B64569)</CodesignKey>
-	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
+	  <ProvisioningType>automatic</ProvisioningType>
+	  <CodesignKey>Apple Development: Created via API (527G7WNUKB)</CodesignKey>
+	  <CodesignProvision>VS: com.appvnext.dotnetrocks Development</CodesignProvision>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\dnrmiclogo.png" BaseSize="424,520" />
 		
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\dnrmiclogo.png"  BaseSize="424,520" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -61,6 +60,14 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\Images\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\dnrmiclogo.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\dnrmiclogo.jpg" />
 	</ItemGroup>
 
 </Project>
