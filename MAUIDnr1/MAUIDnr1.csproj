@@ -53,6 +53,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\dnrmiclogo.png" />
+	  <None Remove="Resources\Splash\dnrmiclogo.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Plugin.Maui.Audio" Version="1.0.0" />
@@ -63,11 +68,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiIcon Include="Resources\AppIcon\dnrmiclogo.jpg" />
+	  <MauiIcon Include="Resources\AppIcon\dnrmiclogo.png" Color="#89d0fc" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiSplashScreen Include="Resources\Splash\dnrmiclogo.jpg" />
+	  <MauiSplashScreen Include="Resources\Splash\dnrmiclogo.png" Color="#89d0fc" />
 	</ItemGroup>
 
 </Project>
